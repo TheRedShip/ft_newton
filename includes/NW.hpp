@@ -58,6 +58,8 @@ struct Vertex {
 # include "ShaderProgram.hpp"
 # include "Scene.hpp"
 
+# include "PhysicsObject.hpp"
+# include "Collider.hpp"
 
 
 #endif

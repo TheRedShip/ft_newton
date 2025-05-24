@@ -53,6 +53,7 @@ ALL_SRCS	:=	$(IMGUI_SRCS)	gl.cpp		\
 				class/Shader.cpp			\
 				class/Camera.cpp			\
 				class/Scene.cpp				\
+				class/PhysicsObject.cpp		\
 
 SRCS		:=	$(ALL_SRCS:%=$(SRCS_DIR)/%)
 OBJS		:=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))

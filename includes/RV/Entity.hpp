@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Objects.hpp                                        :+:      :+:    :+:   */
+/*   Entity.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 14:11:32 by TheRed            #+#    #+#             */
-/*   Updated: 2025/05/24 14:11:32 by TheRed           ###   ########.fr       */
+/*   Created: 2025/05/24 15:06:34 by TheRed            #+#    #+#             */
+/*   Updated: 2025/05/24 15:06:34 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NW_OBJECTS__HPP
-# define NW_OBJECTS__HPP
+#ifndef NW_ENTITY__HPP
+#define NW_ENTITY__HPP
+
+#include "NW.hpp"
+
+class Entity
+{
+	
+}
 
 #endif
