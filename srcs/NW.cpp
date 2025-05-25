@@ -23,9 +23,11 @@ int main(int argc, char **argv)
 	if (argc == 2)
 		args = argv[1];
 
-	Scene		scene;
-	Window		window(&scene, WIDTH, HEIGHT, "Ft_newton", 0);
+	Scene			scene;
+	Window			window(&scene, WIDTH, HEIGHT, "Ft_newton", 0);
 	
+	EntityManager	*entity_manager = scene.getEntityManager();
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
@@ -38,19 +40,22 @@ int main(int argc, char **argv)
 	program.attachShader(&fragment_shader);
 	program.link();
 
-	std::vector<GLuint> textures = generateTextures();
 	std::vector<Buffer *> buffers = createDataOnGPU(scene);
 
-    std::vector<Entity *> entities;
-    for (int i = 0; i < 100; i++)
-    {
-        for (int j = 0; j < 100; j++)
-        {
-            Entity *entity = new Entity(1.0f, Mesh::createCube(), new SphereCollider(0.5f));
-            entity->getPhysicsObject()->setPosition(glm::vec3(i * 1.5f, 0.0f, j * 1.5f));
-            entities.push_back(entity);
-        }
-    }
+	Entity *floor = new Entity(0.0f, Mesh::createBox(glm::vec3(100.0f, 0.1f, 100.0f)), new BoxCollider(glm::vec3(100.0f, 0.1f, 100.0f)));
+	entity_manager->addEntity(floor);
+
+	Entity *box1 = new Entity(1.0f, Mesh::createBox(glm::vec3(1.0f)), new BoxCollider(glm::vec3(1.0f)));
+	Entity *box2 = new Entity(10.0f, Mesh::createBox(glm::vec3(2.0f)), new BoxCollider(glm::vec3(2.0f)));
+	Entity *box3 = new Entity(100.0f, Mesh::createBox(glm::vec3(5.0f)), new BoxCollider(glm::vec3(5.0f)));
+	
+	box1->setPosition(glm::vec3(10.0f, 30.0f, 0.0f));
+	box2->setPosition(glm::vec3(0.0f, 30.0f, 0.0f));
+	box3->setPosition(glm::vec3(-10.0f, 30.0f, 0.0f));
+
+	entity_manager->addEntity(box1);
+	entity_manager->addEntity(box2);
+	entity_manager->addEntity(box3);
 
 	while (!window.shouldClose())
 	{
@@ -69,15 +74,12 @@ int main(int argc, char **argv)
 
 		program.set_mat4("view", view);
 		program.set_mat4("projection", projection);
-		
-		program.set_vec3("light_dir", glm::vec3(0.5f, -1.0f, 0.0f));
-		program.set_vec3("object_color", glm::vec3(1.0f, 1.0f, 1.0f));
-        
-        for (Entity *entity : entities)
-        {
-            entity->update(window.getDelta());
-            entity->draw(program);
-        }
+
+		program.set_vec3("view_pos", camera->getPosition());
+		program.set_vec3("light_pos", glm::vec3(2.0f, 7.5f, 10.0f)); 
+		        
+		entity_manager->updateEntities(window.getDelta());
+		entity_manager->drawEntities(program);
 
 		window.imGuiNewFrame();
 		window.imGuiRender();

@@ -29,10 +29,14 @@ class Entity
 
 		PhysicsObject *getPhysicsObject();
 
+		void setPosition(const glm::vec3 &pos);
+
 	private:
 		PhysicsObject	*_object;
 		Mesh			*_mesh;
 		PhysicsCollider	*_collider;
+
+		glm::vec3		_color;
 };
 
 #endif

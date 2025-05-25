@@ -18,10 +18,10 @@
 class SphereCollider : public PhysicsCollider
 {
 	public:
-		SphereCollider(float radius);
-		ColliderType getType() const override;
+		SphereCollider(float radius) : _radius(radius) {}
+		ColliderType getType() const override { return ColliderType::SPH; }
 		
-		float getRadius() const;
+		float getRadius() const { return _radius; }
 
 	private:
 		float _radius;

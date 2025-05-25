@@ -22,6 +22,7 @@ struct GPUDebug
 };
 
 class Camera;
+class EntityManager;
 
 class Scene
 {
@@ -32,9 +33,13 @@ class Scene
 		GPUDebug						&getDebug(void);
 		Camera							*getCamera(void) const;
 
+		EntityManager					*getEntityManager(void);
+
 	private:
-		GPUDebug					_gpu_debug;
-		Camera						*_camera;
+		GPUDebug			_gpu_debug;
+		Camera				*_camera;
+
+		EntityManager		*_entity_manager;
 };
 
 #endif

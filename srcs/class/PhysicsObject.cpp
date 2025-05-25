@@ -24,6 +24,15 @@ void PhysicsObject::applyForce(const glm::vec3 &force)
 
 void PhysicsObject::update(float delta_time)
 {
+    //apply forces
+
+    glm::vec3 gravity = glm::vec3(0.0f, -9.81f, 0.0f);
+
+    if (_mass > 0.0f)
+        _acceleration += gravity;
+
+    //integrate position and velocity
+
     _velocity += _acceleration * delta_time;
     _position += _velocity * delta_time;
     _acceleration = glm::vec3(0.0f);

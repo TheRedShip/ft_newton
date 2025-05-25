@@ -30,9 +30,9 @@ void Mesh::draw() const
 	glBindVertexArray(0);
 }
 
-Mesh *Mesh::createCube()
+Mesh *Mesh::createBox(const glm::vec3 &size)
 {
-    float vertices[] = {
+    float base_vertices[] = {
         // positions          // normals
         -0.5f,-0.5f, 0.5f,    0.0f, 0.0f, 1.0f,
          0.5f,-0.5f, 0.5f,    0.0f, 0.0f, 1.0f,
@@ -77,12 +77,31 @@ Mesh *Mesh::createCube()
         -0.5f,-0.5f,-0.5f,    0.0f,-1.0f, 0.0f
     };
 
+    int count = 36;
+
+    std::vector<float> vertices;
+    vertices.reserve(count * 6);
+
+    for (int i = 0; i < count; ++i)
+    {
+        glm::vec3 pos(base_vertices[i*6+0] * size.x,
+                      base_vertices[i*6+1] * size.y,
+                      base_vertices[i*6+2] * size.z);
+
+        glm::vec3 norm(base_vertices[i*6+3],
+                       base_vertices[i*6+4],
+                       base_vertices[i*6+5]);
+
+        vertices.insert(vertices.end(), {pos.x, pos.y, pos.z,
+                                         norm.x, norm.y, norm.z});
+    }
+
     unsigned int VAO, VBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -92,5 +111,5 @@ Mesh *Mesh::createCube()
 
     glBindVertexArray(0);
 
-    return (new Mesh(VAO, VBO, 36));
+    return (new Mesh(VAO, VBO, count));
 }

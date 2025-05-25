@@ -28,7 +28,7 @@ else
 	RM          :=	rm -rf
 	DIR_DUP     =	mkdir -p $(@D)
 	CC          :=	g++ -g 
-	CFLAGS      :=	-Wall -Wextra -Werror -g -std=c++20 -fsanitize=address -static-libasan
+	CFLAGS      :=	-g -std=c++20 -fsanitize=address -static-libasan
 	IFLAGS	    :=	-I./includes -I./includes/NW -I./includes/imgui 
 	LDFLAGS		+=  -lglfw -lGL -lGLU -lX11 -lpthread -ldl
 	FILE		=	$(shell ls -lR srcs/ | grep -F .c | wc -l)
@@ -55,8 +55,8 @@ ALL_SRCS	:=	$(IMGUI_SRCS)	gl.cpp				\
 				class/Scene.cpp						\
 				class/PhysicsObject.cpp				\
 				class/Mesh.cpp						\
+				class/EntityManager.cpp				\
 				class/Entity.cpp					\
-				class/Colliders/SphereCollider.cpp	\
 
 SRCS		:=	$(ALL_SRCS:%=$(SRCS_DIR)/%)
 OBJS		:=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))

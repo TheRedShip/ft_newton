@@ -23,7 +23,7 @@ class Mesh
 
 		void draw() const;
 
-		static Mesh *createCube();
+		static Mesh *createBox(const glm::vec3 &size);
 		// static std::shared_ptr<Mesh> createSphere(unsigned int segments = 16, unsigned int rings = 16);
 
 	private:
@@ -31,4 +31,5 @@ class Mesh
 		unsigned int _VBO;
 		unsigned int _vertex_count;
 };
+
 #endif
