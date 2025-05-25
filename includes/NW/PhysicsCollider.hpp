@@ -17,17 +17,17 @@
 
 class Entity;
 
+enum class ColliderType
+{
+    SPH,
+    BOX,
+};
+
 class PhysicsCollider
 {
 	public:
-		PhysicsCollider(Entity *owner) : _owner(owner) {}
-		
 		virtual ~PhysicsCollider() = default;
-		virtual bool intersects(const PhysicsCollider &other) const = 0;
-
-	protected:
-		Entity *_owner;
-
+		virtual ColliderType getType() const = 0;
 };
 
 #endif

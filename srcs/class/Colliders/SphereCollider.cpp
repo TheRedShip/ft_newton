@@ -12,23 +12,17 @@
 
 #include "Colliders/SphereCollider.hpp"
 
-SphereCollider::SphereCollider(Entity *owner, float radius) : PhysicsCollider(owner), _radius(radius)
+SphereCollider::SphereCollider(float radius) : _radius(radius)
 {
 
+}
+
+ColliderType SphereCollider::getType() const
+{
+	return (ColliderType::SPH);
 }
 
 float SphereCollider::getRadius() const
 {
-	return _radius;
+	return (_radius);
 }
-
-// bool SphereCollider::intersects(const PhysicsCollider &other)
-// {
-//     if (auto *sphere = dynamic_cast<const SphereCollider *>(&other))
-// 	{
-//         float dist2 = glm::length2(_owner - posB);
-//         float radSum = radius + sphere->radius;
-//         return dist2 <= radSum * radSum;
-//     }
-//     return false;
-// }

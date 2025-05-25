@@ -11,9 +11,13 @@
 /* ************************************************************************** */
 
 #ifndef NW_ENTITY__HPP
-#define NW_ENTITY__HPP
+# define NW_ENTITY__HPP
 
-#include "NW.hpp"
+# include "NW.hpp"
+
+class Mesh;
+class PhysicsCollider;
+class PhysicsObject;
 
 class Entity
 {
@@ -21,15 +25,14 @@ class Entity
 		Entity(float mass, Mesh *mesh, PhysicsCollider *collider);
 
 		void update(float delta_time);
-
 		void draw(const ShaderProgram &program) const;
 
+		PhysicsObject *getPhysicsObject();
+
 	private:
-		PhysicsObject	_object;
+		PhysicsObject	*_object;
 		Mesh			*_mesh;
 		PhysicsCollider	*_collider;
-
-
-}
+};
 
 #endif

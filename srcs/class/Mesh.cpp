@@ -30,7 +30,7 @@ void Mesh::draw() const
 	glBindVertexArray(0);
 }
 
-std::shared_ptr<Mesh> Mesh::createCube()
+Mesh *Mesh::createCube()
 {
     float vertices[] = {
         // positions          // normals

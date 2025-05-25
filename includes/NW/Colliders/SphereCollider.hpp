@@ -18,10 +18,11 @@
 class SphereCollider : public PhysicsCollider
 {
 	public:
-		SphereCollider(Entity *owner, float radius);
-
+		SphereCollider(float radius);
+		ColliderType getType() const override;
+		
 		float getRadius() const;
-	
+
 	private:
 		float _radius;
 };

@@ -4,11 +4,12 @@ in vec3 FragPos;
 out vec4 FragColor;
 
 uniform vec3 light_dir;
-uniform vec3 light_color;
 uniform vec3 object_color;
 
 void main()
 {
+    vec3 light_color = vec3(1.);
+    
     vec3 ambient = 0.2 * light_color;
 
     vec3 norm = normalize(Normal);

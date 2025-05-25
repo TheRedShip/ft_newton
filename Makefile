@@ -46,14 +46,17 @@ IMGUI_SRCS := imgui/imgui.cpp         \
               imgui/imgui_impl_glfw.cpp \
               imgui/imgui_impl_opengl3.cpp
 
-ALL_SRCS	:=	$(IMGUI_SRCS)	gl.cpp		\
-				NW.cpp	NW_utils.cpp		\
-				class/Window.cpp			\
-				class/ShaderProgram.cpp		\
-				class/Shader.cpp			\
-				class/Camera.cpp			\
-				class/Scene.cpp				\
-				class/PhysicsObject.cpp		\
+ALL_SRCS	:=	$(IMGUI_SRCS)	gl.cpp				\
+				NW.cpp	NW_utils.cpp				\
+				class/Window.cpp					\
+				class/ShaderProgram.cpp				\
+				class/Shader.cpp					\
+				class/Camera.cpp					\
+				class/Scene.cpp						\
+				class/PhysicsObject.cpp				\
+				class/Mesh.cpp						\
+				class/Entity.cpp					\
+				class/Colliders/SphereCollider.cpp	\
 
 SRCS		:=	$(ALL_SRCS:%=$(SRCS_DIR)/%)
 OBJS		:=	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))

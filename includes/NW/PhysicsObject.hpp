@@ -17,7 +17,7 @@
 
 class PhysicsCollider;
 
-class PhysicsObject 
+class PhysicsObject
 {
 	public:
 		PhysicsObject(float mass);

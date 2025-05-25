@@ -12,21 +12,26 @@
 
 #include "Entity.hpp"
 
-Entity::Entity(float mass, Mesh *mesh , PhysicsCollider *collider) : _object(mass), _mesh(mesh), _collider(collider)
+Entity::Entity(float mass, Mesh *mesh, PhysicsCollider *collider) : _mesh(mesh), _collider(collider)
 {
-
+	_object = new PhysicsObject(mass);
 }
 
 void Entity::update(float delta_time)
 {
-	_object.update(delta_time);
+	_object->update(delta_time);
 }
 
 void Entity::draw(const ShaderProgram &program) const
 {
-	glm::mat4 model = glm::translate(glm::mat4(1.0f), _object.getPosition());
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), _object->getPosition());
 
 	program.set_mat4("model", model);
 	
 	_mesh->draw();
+}
+
+PhysicsObject *Entity::getPhysicsObject()
+{
+	return (_object);
 }
