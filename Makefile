@@ -12,7 +12,7 @@ ifeq ($(OS),Windows_NT)
 	RM          :=	del /S /Q
 	DIR_DUP     =	if not exist "$(@D)" mkdir "$(@D)"
 	CC          :=	g++ -O3
-	IFLAGS	    :=	-I./includes -I./includes/RV -I./includes/imgui
+	IFLAGS	    :=	-I./includes -I./includes/NW -I./includes/imgui
 	LDFLAGS     :=   -L./lib -L"D:/ffmpeg/lib" -lglfw3 -lopengl32 -lgdi32 -lcglm
 else
 	BLACK		=	\033[30;49;3m
@@ -29,7 +29,7 @@ else
 	DIR_DUP     =	mkdir -p $(@D)
 	CC          :=	g++ -g 
 	CFLAGS      :=	-Wall -Wextra -Werror -g -std=c++20 -fsanitize=address -static-libasan
-	IFLAGS	    :=	-I./includes -I./includes/RV -I./includes/imgui 
+	IFLAGS	    :=	-I./includes -I./includes/NW -I./includes/imgui 
 	LDFLAGS		+=  -lglfw -lGL -lGLU -lX11 -lpthread -ldl
 	FILE		=	$(shell ls -lR srcs/ | grep -F .c | wc -l)
 	CMP			=	1

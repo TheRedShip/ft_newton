@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Entity.hpp                                         :+:      :+:    :+:   */
+/*   SphereCollider.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 15:06:34 by TheRed            #+#    #+#             */
-/*   Updated: 2025/05/24 15:06:34 by TheRed           ###   ########.fr       */
+/*   Created: 2025/05/25 16:21:28 by TheRed            #+#    #+#             */
+/*   Updated: 2025/05/25 16:21:28 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NW_ENTITY__HPP
-#define NW_ENTITY__HPP
+#ifndef NW_COLLIDERS_SPHERECOLLIDER_HPP
+# define NW_COLLIDERS_SPHERECOLLIDER_HPP
 
-#include "NW.hpp"
+# include "NW.hpp"
 
-class Entity
+class SphereCollider : public PhysicsCollider
 {
+	public:
+		SphereCollider(Entity *owner, float radius);
+
+		float getRadius() const;
 	
-}
+	private:
+		float _radius;
+};
 
 #endif

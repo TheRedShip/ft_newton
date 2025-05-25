@@ -116,13 +116,13 @@ int main(int argc, char **argv)
 		
 		program.use();
 
-		program.set_vec3("light_dir", glm::vec3(0.5f, -1.0f, 0.0f));
-		program.set_vec3("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
-
 		program.set_mat4("view", view);
 		program.set_mat4("projection", projection);
 		
-		glm::mat4 model = glm::mat4(1.0f);
+		program.set_vec3("light_dir", glm::vec3(0.5f, -1.0f, 0.0f));
+		program.set_vec3("light_color", glm::vec3(1.0f, 1.0f, 1.0f));
+
+        glm::mat4 model = glm::mat4(1.0f);
 		program.set_mat4("model", model);
 		program.set_vec3("object_color", glm::vec3(1.0f, 1.0f, 1.0f));
 

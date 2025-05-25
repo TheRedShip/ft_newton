@@ -21,13 +21,10 @@ class PhysicsObject
 {
 	public:
 		PhysicsObject(float mass);
-		virtual ~PhysicsObject(void) = default;
+		PhysicsObject(void) = default;
 
-		virtual void applyForce(const glm::vec3 &force) = 0;
-		virtual void update(float deltaTime) = 0;
-
-		virtual bool checkCollision(const PhysicsObject &other) const = 0;
-		virtual void resolveCollision(PhysicsObject &other) = 0;
+		void applyForce(const glm::vec3 &force);
+		void update(float deltaTime);
 
 		const glm::vec3 &getPosition() const;
 		const glm::vec3 &getVelocity() const;
@@ -38,8 +35,6 @@ class PhysicsObject
 
 		float getMass() const;
 
-		PhysicsCollider *getCollider() const;
-
 	protected:
 
 		float 		_mass;
@@ -47,8 +42,6 @@ class PhysicsObject
 		glm::vec3	_position;
 		glm::vec3	_velocity;
 		glm::vec3	_acceleration;
-
-		PhysicsCollider	*_collider;
 };
 
 #endif

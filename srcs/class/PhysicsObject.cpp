@@ -22,10 +22,10 @@ void PhysicsObject::applyForce(const glm::vec3 &force)
     _acceleration += force / _mass;
 }
 
-void PhysicsObject::update(float deltaTime)
+void PhysicsObject::update(float delta_time)
 {
-    _velocity += _acceleration * deltaTime;
-    _position += _velocity * deltaTime;
+    _velocity += _acceleration * delta_time;
+    _position += _velocity * delta_time;
     _acceleration = glm::vec3(0.0f);
 }
 
@@ -57,9 +57,4 @@ float PhysicsObject::getMass() const
 void PhysicsObject::setMass(float mass)
 {
 	_mass = mass;
-}
-
-PhysicsCollider *PhysicsObject::getCollider() const
-{
-    return (_collider);
 }
