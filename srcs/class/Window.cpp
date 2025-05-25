@@ -197,3 +197,8 @@ float		Window::getFps(void) const
 {
 	return (_fps);
 }
+
+float		Window::getDelta(void) const
+{
+	return (_delta);
+}

@@ -41,7 +41,16 @@ int main(int argc, char **argv)
 	std::vector<GLuint> textures = generateTextures();
 	std::vector<Buffer *> buffers = createDataOnGPU(scene);
 
-    Entity *cube_entity = new Entity(1.0f, Mesh::createCube(), new SphereCollider(1.0f));
+    std::vector<Entity *> entities;
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++)
+        {
+            Entity *entity = new Entity(1.0f, Mesh::createCube(), new SphereCollider(0.5f));
+            entity->getPhysicsObject()->setPosition(glm::vec3(i * 1.5f, 0.0f, j * 1.5f));
+            entities.push_back(entity);
+        }
+    }
 
 	while (!window.shouldClose())
 	{
@@ -64,6 +73,11 @@ int main(int argc, char **argv)
 		program.set_vec3("light_dir", glm::vec3(0.5f, -1.0f, 0.0f));
 		program.set_vec3("object_color", glm::vec3(1.0f, 1.0f, 1.0f));
         
+        for (Entity *entity : entities)
+        {
+            entity->update(window.getDelta());
+            entity->draw(program);
+        }
 
 		window.imGuiNewFrame();
 		window.imGuiRender();
